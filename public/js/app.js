@@ -59366,8 +59366,8 @@ var Master = function (_Component) {
                             { className: 'navbar-header' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'a',
-                                { className: 'navbar-brand', href: 'https://itsolutionstuff.com' },
-                                'ItSolutionStuff.com'
+                                { className: 'navbar-brand', href: 'https://books.wholesale360.com' },
+                                'Wholesale360 (Books)'
                             )
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(

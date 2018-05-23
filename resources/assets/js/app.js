@@ -1,16 +1,21 @@
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes React and other helpers. It's a great starting point while
- * building robust, powerful web applications using React + Laravel.
- */
-
 require('./bootstrap');
+import React from 'react';
+import { render } from 'react-dom';
+import { Router, Route, browserHistory } from 'react-router';
 
-/**
- * Next, we will create a fresh React component instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
 
-require('./components/Example');
+import Master from './components/Master';
+import CreateAccount from './components/CreateAccount';
+import DisplayAccount from './components/DisplayAccount';
+import UpdateAccount from './components/UpdateAccount';
+
+
+render(
+<Router history={browserHistory}>
+    <Route path="/" component={Master} >
+    <Route path="/add-item" component={CreateAccount} />
+    <Route path="/display-item" component={DisplayAccount} />
+    <Route path="/edit/:id" component={UpdateAccount} />
+    </Route>
+    </Router>,
+    document.getElementById('crud-app'));

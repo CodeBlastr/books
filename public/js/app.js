@@ -59366,8 +59366,8 @@ var Master = function (_Component) {
                             { className: 'navbar-header' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'a',
-                                { className: 'navbar-brand', href: 'https://books.wholesale360.com' },
-                                'Wholesale360 (Books)'
+                                { className: 'navbar-brand', href: 'http://books.wholesale360.com' },
+                                'Wholesadddddle360 (Books)'
                             )
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -59589,6 +59589,7 @@ var DisplayAccount = function (_Component) {
         var _this = _possibleConstructorReturn(this, (DisplayAccount.__proto__ || Object.getPrototypeOf(DisplayAccount)).call(this, props));
 
         _this.state = { value: '', accounts: '' };
+        console.log('asldkjfalsdkfjasdf');
         return _this;
     }
 

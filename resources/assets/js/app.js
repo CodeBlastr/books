@@ -11,11 +11,13 @@ import UpdateAccount from './components/UpdateAccount';
 
 
 render(
-<Router history={browserHistory}>
-    <Route path="/" component={Master} >
-    <Route path="/add-item" component={CreateAccount} />
-    <Route path="/display-item" component={DisplayAccount} />
-    <Route path="/edit/:id" component={UpdateAccount} />
-    </Route>
+    <Router history={browserHistory}>
+        <Route path="/" component={Master} >
+            <Route path="/add-item" component={CreateAccount} />
+            <Route path="/display-item" component={DisplayAccount} />
+            <Route path="/edit/:id" component={UpdateAccount} />
+        </Route>
     </Router>,
-    document.getElementById('crud-app'));
+
+    document.getElementById('crud-app')
+);

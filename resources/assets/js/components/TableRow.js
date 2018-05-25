@@ -6,6 +6,8 @@ import MyGlobleSetting from './MyGlobleSetting';
 class TableRow extends Component {
     constructor(props) {
         super(props);
+        console.log('alskdjf');asdf
+        //console.log(this.props.obj);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleSubmit(event) {

@@ -59367,7 +59367,7 @@ var Master = function (_Component) {
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'a',
                                 { className: 'navbar-brand', href: 'http://books.wholesale360.com' },
-                                'Wholesadddddle360 (Books)'
+                                'Wholljkasdfljkasdflkesale360 (Books)'
                             )
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -59589,7 +59589,6 @@ var DisplayAccount = function (_Component) {
         var _this = _possibleConstructorReturn(this, (DisplayAccount.__proto__ || Object.getPrototypeOf(DisplayAccount)).call(this, props));
 
         _this.state = { value: '', accounts: '' };
-        console.log('asldkjfalsdkfjasdf');
         return _this;
     }
 
@@ -59609,7 +59608,7 @@ var DisplayAccount = function (_Component) {
         value: function tabRow() {
             if (this.state.accounts instanceof Array) {
                 return this.state.accounts.map(function (object, i) {
-                    return;
+                    return 'some string'; //<TableRow obj={object} />
                 });
             }
         }
@@ -59715,6 +59714,8 @@ var TableRow = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (TableRow.__proto__ || Object.getPrototypeOf(TableRow)).call(this, props));
 
+        console.log('alskdjf');asdf;
+        //console.log(this.props.obj);
         _this.handleSubmit = _this.handleSubmit.bind(_this);
         return _this;
     }

@@ -8,7 +8,6 @@ class DisplayAccount extends Component {
     constructor(props) {
         super(props);
         this.state = {value: '', accounts: ''};
-        console.log('asldkjfalsdkfjasdf');
     }
     componentDidMount(){
         axios.get(MyGlobleSetting.url + '/api/accounts')
@@ -22,8 +21,7 @@ class DisplayAccount extends Component {
     tabRow(){
         if(this.state.accounts instanceof Array){
             return this.state.accounts.map(function(object, i){
-                return ;
-
+                return 'some string';//<TableRow obj={object} />
             })
         }
     }

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { Router, Route, Link } from 'react-router';
 
-
 class Master extends Component {
     render(){
         return (
@@ -9,7 +8,7 @@ class Master extends Component {
                 <nav className="navbar navbar-default">
                     <div className="container-fluid">
                         <div className="navbar-header">
-                            <a className="navbar-brand" href="http://books.wholesale360.com">Wholljkasdfljkasdflkesale360 (Books)</a>
+                            <a className="navbar-brand" href="http://books.wholesale360.com">zzzzz (Books)</a>
                         </div>
                         <ul className="nav navbar-nav">
                             <li><Link to="/">Home</Link></li>

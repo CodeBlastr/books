@@ -21,7 +21,7 @@ class DisplayAccount extends Component {
     tabRow(){
         if(this.state.accounts instanceof Array){
             return this.state.accounts.map(function(object, i){
-                return 'some string';//<TableRow obj={object} />
+                return <TableRow key={i} data={JSON.stringify(object)} />
             })
         }
     }

@@ -59367,7 +59367,7 @@ var Master = function (_Component) {
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'a',
                                 { className: 'navbar-brand', href: 'http://books.wholesale360.com' },
-                                'Wholljkasdfljkasdflkesale360 (Books)'
+                                'zzzzz (Books)'
                             )
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -59608,7 +59608,7 @@ var DisplayAccount = function (_Component) {
         value: function tabRow() {
             if (this.state.accounts instanceof Array) {
                 return this.state.accounts.map(function (object, i) {
-                    return 'some string'; //<TableRow obj={object} />
+                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__TableRow__["a" /* default */], { key: i, data: JSON.stringify(object) });
                 });
             }
         }
@@ -59714,8 +59714,7 @@ var TableRow = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (TableRow.__proto__ || Object.getPrototypeOf(TableRow)).call(this, props));
 
-        console.log('alskdjf');asdf;
-        //console.log(this.props.obj);
+        _this.data = JSON.parse(_this.props.data);
         _this.handleSubmit = _this.handleSubmit.bind(_this);
         return _this;
     }
@@ -59724,9 +59723,9 @@ var TableRow = function (_Component) {
         key: 'handleSubmit',
         value: function handleSubmit(event) {
             event.preventDefault();
-            var uri = __WEBPACK_IMPORTED_MODULE_2__MyGlobleSetting__["a" /* default */].url + ('/api/accounts/' + this.props.obj.id);
+            var uri = __WEBPACK_IMPORTED_MODULE_2__MyGlobleSetting__["a" /* default */].url + ('/api/accounts/' + this.data.id);
             axios.delete(uri);
-            __WEBPACK_IMPORTED_MODULE_1_react_router__["browserHistory"].push('/display-item');
+            __WEBPACK_IMPORTED_MODULE_1_react_router__["browserHistory"].push('/');
         }
     }, {
         key: 'render',
@@ -59737,17 +59736,17 @@ var TableRow = function (_Component) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'td',
                     null,
-                    this.props.obj.id
+                    this.data.id
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'td',
                     null,
-                    this.props.obj.title
+                    this.data.title
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'td',
                     null,
-                    this.props.obj.body
+                    this.data.body
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'td',
@@ -59757,7 +59756,7 @@ var TableRow = function (_Component) {
                         { onSubmit: this.handleSubmit },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             __WEBPACK_IMPORTED_MODULE_1_react_router__["Link"],
-                            { to: "edit/" + this.props.obj.id, className: 'btn btn-primary' },
+                            { to: "edit/" + this.data.id, className: 'btn btn-primary' },
                             'Edit'
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'submit', value: 'Delete', className: 'btn btn-danger' })
@@ -59770,7 +59769,7 @@ var TableRow = function (_Component) {
     return TableRow;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
-/* unused harmony default export */ var _unused_webpack_default_export = (TableRow);
+/* harmony default export */ __webpack_exports__["a"] = (TableRow);
 
 /***/ }),
 /* 285 */

@@ -6,31 +6,30 @@ import MyGlobleSetting from './MyGlobleSetting';
 class TableRow extends Component {
     constructor(props) {
         super(props);
-        console.log('alskdjf');asdf
-        //console.log(this.props.obj);
+        this.data = JSON.parse(this.props.data);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleSubmit(event) {
         event.preventDefault();
-        let uri = MyGlobleSetting.url + `/api/accounts/${this.props.obj.id}`;
+        let uri = MyGlobleSetting.url + `/api/accounts/${this.data.id}`;
         axios.delete(uri);
-        browserHistory.push('/display-item');
+        browserHistory.push('/');
     }
     render() {
         return (
             <tr>
                 <td>
-                    {this.props.obj.id}
+                    {this.data.id}
                 </td>
                 <td>
-                    {this.props.obj.title}
+                    {this.data.title}
                 </td>
                 <td>
-                    {this.props.obj.body}
+                    {this.data.body}
                 </td>
                 <td>
                     <form onSubmit={this.handleSubmit}>
-                        <Link to={"edit/"+this.props.obj.id} className="btn btn-primary">Edit</Link>
+                        <Link to={"edit/"+this.data.id} className="btn btn-primary">Edit</Link>
                         <input type="submit" value="Delete" className="btn btn-danger"/>
                     </form>
                 </td>

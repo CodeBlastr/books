@@ -49,36 +49,28 @@ class UpdateAccount extends Component {
     render(){
         return (
             <div>
-            <h1>Update Account</h1>
-        <div className="row">
-            <div className="col-md-10"></div>
-            <div className="col-md-2">
-            <Link to="/display-item" className="btn btn-success">Return to Account</Link>
-        </div>
-        </div>
-        <form onSubmit={this.handleSubmit}>
-    <div className="form-group">
-            <label>Account Title</label>
-        <input type="text"
-        className="form-control"
-        value={this.state.title}
-        onChange={this.handleChange1} />
-    </div>
-
-
-        <div className="form-group">
-            <label name="account_body">Account Body</label>
-        <textarea className="form-control"
-        onChange={this.handleChange2} value={this.state.body}></textarea>
-        </div>
-
-
-        <div className="form-group">
-            <button className="btn btn-primary">Update</button>
+                <h1>Update Account</h1>
+                <div className="row">
+                    <div className="col-md-10"></div>
+                    <div className="col-md-2">
+                        <Link to="/display-item" className="btn btn-success">Return to Account</Link>
+                    </div>
+                </div>
+                <form onSubmit={this.handleSubmit}>
+                    <div className="form-group">
+                        <label>Account Title</label>
+                        <input type="text" className="form-control" value={this.state.title} onChange={this.handleChange1} />
+                    </div>
+                    <div className="form-group">
+                        <label name="account_body">Account Body</label>
+                        <textarea className="form-control" onChange={this.handleChange2} value={this.state.body}></textarea>
+                    </div>
+                    <div className="form-group">
+                        <button className="btn btn-primary">Update</button>
+                    </div>
+                </form>
             </div>
-            </form>
-            </div>
-    )
+        )
     }
 }
 export default UpdateAccount;

@@ -59343,10 +59343,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Master = function (_Component) {
     _inherits(Master, _Component);
 
-    function Master() {
+    function Master(props) {
         _classCallCheck(this, Master);
 
-        return _possibleConstructorReturn(this, (Master.__proto__ || Object.getPrototypeOf(Master)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Master.__proto__ || Object.getPrototypeOf(Master)).call(this, props));
+
+        console.log(_this.props.children);
+        return _this;
     }
 
     _createClass(Master, [{
@@ -59367,7 +59370,7 @@ var Master = function (_Component) {
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'a',
                                 { className: 'navbar-brand', href: 'http://books.wholesale360.com' },
-                                'zzzzz (Books)'
+                                'zzzz (Books)'
                             )
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -59725,7 +59728,7 @@ var TableRow = function (_Component) {
             event.preventDefault();
             var uri = __WEBPACK_IMPORTED_MODULE_2__MyGlobleSetting__["a" /* default */].url + ('/api/accounts/' + this.data.id);
             axios.delete(uri);
-            __WEBPACK_IMPORTED_MODULE_1_react_router__["browserHistory"].push('/');
+            __WEBPACK_IMPORTED_MODULE_1_react_router__["browserHistory"].push('/display-item');
         }
     }, {
         key: 'render',

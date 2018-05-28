@@ -10,7 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Route::get('/{any}', function ($any) {
+//
+//    // any other url, subfolders also
+//
+//})->where('any', '.*');
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::any('/{all}', function ($all) {
+    return view('welcome');
+})->where(['all' => '.*']);

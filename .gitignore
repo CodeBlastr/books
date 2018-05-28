@@ -5,6 +5,7 @@ composer.lock
 /.idea
 /.vagrant
 yarn-error.log
+package-lock.json
 
 
 # Laravel 4 specific

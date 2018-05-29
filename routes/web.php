@@ -19,6 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// testing some stuff
+Route::get('/app',  'AppController@index');
+
 Route::any('/{all}', function ($all) {
     return view('welcome');
 })->where(['all' => '.*']);

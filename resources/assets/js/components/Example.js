@@ -8,10 +8,13 @@ export default class Example extends Component {
         this.state = {response: ''};
     }
     componentDidMount(){
+
+        console.log('we got here');
         axios.get(MyGlobleSetting.url + '/api/app')
             .then(response => {
             this.setState({ app: response.data });
-        this.state.app;
+        console.log(this.state.app)
+        console.log('then we got here');
     })
     .catch(function (error) {
             console.log(error);

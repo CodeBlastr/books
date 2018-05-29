@@ -8,7 +8,7 @@ class Master extends Component {
                 <nav className="navbar navbar-default">
                     <div className="container-fluid">
                         <div className="navbar-header">
-                            <a className="navbar-brand" href="http://books.wholesale360.com">blow (Books)</a>
+                            <a className="navbar-brand" href="http://books.wholesale360.com">stuff (Books)</a>
                         </div>
                         <ul className="nav navbar-nav">
                             <li><Link to="/">Home</Link></li>

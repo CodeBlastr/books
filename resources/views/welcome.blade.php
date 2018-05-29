@@ -10,6 +10,6 @@
 </head>
 <body>
 <div id="crud-app"></div>
-<script src="{{asset('js/app.js')}}" ></script>
+<script src="{{asset('js/app2.js')}}" ></script>
 </body>
 </html>

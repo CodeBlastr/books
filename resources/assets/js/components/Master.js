@@ -2,17 +2,16 @@ import React, {Component} from 'react';
 import { Router, Route, Link } from 'react-router';
 
 class Master extends Component {
-    constructor(props) {
-        super(props);
-        console.log(this.props.children);
-    }
+    //constructor(props) {
+    //    super(props);
+    //}
     render(){
         return (
             <div className="container">
                 <nav className="navbar navbar-default">
                     <div className="container-fluid">
                         <div className="navbar-header">
-                            <a className="navbar-brand" href="http://books.wholesale360.com">zzzz (Books)</a>
+                            <a className="navbar-brand" href="http://books.wholesale360.com">dum (Books)</a>
                         </div>
                         <ul className="nav navbar-nav">
                             <li><Link to="/">Home</Link></li>

@@ -3,6 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Client;
+
 
 class Account extends Model
 {

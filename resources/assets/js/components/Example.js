@@ -1,7 +1,23 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import MyGlobleSetting from './MyGlobleSetting';
 
 export default class Example extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {response: ''};
+    }
+    componentDidMount(){
+        axios.get(MyGlobleSetting.url + '/api/app')
+            .then(response => {
+            this.setState({ app: response.data });
+        this.state.app;
+    })
+    .catch(function (error) {
+            console.log(error);
+        })
+    }
+
     render() {
         return (
             <div className="container">

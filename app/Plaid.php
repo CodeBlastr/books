@@ -10,6 +10,35 @@ use GuzzleHttp\Client;
 class Plaid extends Model
 {
     /**
+     * @var null|string
+     */
+    protected $clientId = null;
+
+    /**
+     * @var null|string
+     */
+    protected $secret = null;
+
+    /**
+     * @var null|string
+     */
+    protected $publicKey = null;
+
+    /**
+     * @var null|string
+     */
+    protected $environment = null;
+
+    /**
+     * @var null|string
+     */
+    protected $uri = null;
+
+    /**
+     * @var null|string
+     */
+    protected $endpoint = null;
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -18,33 +47,50 @@ class Plaid extends Model
         'title', 'body'
     ];
 
-    public static function appLogin() {
-        $client = new Client(); //GuzzleHttp\Client
+    /**
+     * Plaid constructor.
+     * @param array $attributes
+     */
+    public function __construct(array $attributes = array())
+    {
+        parent::__construct($attributes);
 
+        $this->clientId = env('PLAID_CLIENT_ID');
+        $this->secret = env('PLAID_SECRET');
+        $this->publicKey = env('PLAID_PUBLIC_KEY');
+        $this->environment = env('PLAID_ENV');
+        $this->uri = 'https://' . $this->environment . '.plaid.com';
+    }
 
-        $response = $client->request('POST', 'https://developer.api.yodlee.com/ysl/cobrand/login', [
+    public function appLogin() {
+        $client = new Client();
+
+        $response = $client->request('POST', $this->uri . $this->institutionsGet(), [
             'headers' => [
-                'Connection' => 'close',
-                'Accept' => 'application/json',
-                'Content-Type' => 'application/json',
-                'Api-Version' => '1.1',
-                'Cobrand-Name' => 'restserver',
-                'Accept-Encoding' => 'gzip, deflate, sdch, br',
-                'Accept-Language' => 'en-US,en;q=0.8',
+                'Content-Type' => 'application/json'
             ],
             'body' => json_encode([
-                'cobrand' => [
-                    'cobrandLogin' => 'sbCobdf26fce12b038f5a650fd144c92878c95a',
-                    'cobrandPassword' => '28fab632-96db-49a6-a992-1358df021a6f',
-                    'locale' => 'en_US'
-                ]
+                'client_id' => $this->clientId,
+                'secret' => $this->secret,
+                'count' => 200,
+                'offset' => 0
             ])
         ]);
+
+        dd($response->getBody()->getContents());
+
+
+
 
         if ($response->getStatusCode() === 200) {
             return json_decode($response->getBody()->getContents());
         } else {
             return 'error ' . $response->getStatusCode();
         }
+    }
+
+    public function institutionsGet() {
+        $this->endpoint = '/institutions/get';
+        return $this->endpoint;
     }
 }

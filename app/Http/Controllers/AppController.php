@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Yodlee;
+use App\Plaid;
 
 class AppController extends Controller
 {
@@ -14,7 +14,8 @@ class AppController extends Controller
      */
     public function index()
     {
-        $response = Yodlee::appLogin();
+        $plaid = new Plaid();
+        $response = $plaid->appLogin();
         return response()->json($response);
     }
 }

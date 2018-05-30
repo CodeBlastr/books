@@ -15,7 +15,7 @@ class AppController extends Controller
     public function index()
     {
         $plaid = new Plaid();
-        $response = $plaid->appLogin();
+        $response = $plaid->testPoint();
         return response()->json($response);
     }
 }

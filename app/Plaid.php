@@ -7,7 +7,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 
 
-class Yodlee extends Model
+class Plaid extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -31,7 +31,7 @@ class Yodlee extends Model
                 'Cobrand-Name' => 'restserver',
                 'Accept-Encoding' => 'gzip, deflate, sdch, br',
                 'Accept-Language' => 'en-US,en;q=0.8',
-                ],
+            ],
             'body' => json_encode([
                 'cobrand' => [
                     'cobrandLogin' => 'sbCobdf26fce12b038f5a650fd144c92878c95a',

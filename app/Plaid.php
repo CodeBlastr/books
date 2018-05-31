@@ -64,6 +64,9 @@ class Plaid extends Model
 
     public function request($args = ['type' => 'POST', 'endpoint' => '/categories/get', 'headers' => ['Content-Type' => 'application/json'], 'body' => null]) {
         $client = new Client();
+
+        dd($args);
+        
         $response = $client->request('POST', $this->uri . $args['endpoint'], [
             'headers' => $args['headers'],
             'body' => json_encode($args['body'])

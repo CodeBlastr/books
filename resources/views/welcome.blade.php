@@ -23,7 +23,7 @@
             key: '35280f3ce8aba5a2e3d93a50cc9394',
             product: ['transactions'],
             // Optional, use webhooks to get transaction and error updates
-            webhook: 'https://requestb.in',
+            webhook: 'http://books.wholesale360.com',
             onLoad: function() {
                 // Optional, called when Link loads
             },

@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 // this is for testing  (I expect to comment these routes out)
 //Route::get('/accounts',  'AccountController@index');
-Route::get('/credentials/store', 'CredentialController@store');
+Route::post('/credentials/store', 'CredentialController@store');
 
 // this is for production
 Route::any('/{all}', function ($all) {

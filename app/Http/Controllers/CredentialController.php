@@ -37,19 +37,11 @@ class CredentialController extends Controller
      */
     public function store(Request $request)
     {
-        Log::debug('credentials store endpoint was called >>>>>>>>>>>>>>' . json_encode($request));
-
-        dd('anything');
-
-//        $credential = new Credential([
-//            'account_id' => 'nothing',
-//            'name' => $request->get('name'),
-//            'data' => $request->get('data')
-//        ]);
-//        $credential->save();
-//
-//
-//        return response()->json('Credential Added Successfully.');
+        //['public_token'] => public-sandbox-f99ccb0b-f166-404d-90a5-cff8b80b1632
+        $credential = new Credential([
+            'data' => $request->input('public_token')
+        ]);
+        $credential->save();
     }
 
     /**

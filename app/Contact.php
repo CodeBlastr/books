@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Account extends Model
+class Contact extends Model
 {
 
     /**
@@ -13,12 +13,13 @@ class Account extends Model
      * @var array
      */
     protected $fillable = [
-        'title',
-        'description',
+        'name',
         'type',
-        'detail',
-        'local_balance',
-        'remote_balance'
+        'company',
+        'email',
+        'phone',
+        'billing_address_street',
+        'billing_address_city',
     ];
 
     /**
@@ -31,5 +32,4 @@ class Account extends Model
             $model->uuid = (string) Uuid::generate(4);
         });
     }
-
 }

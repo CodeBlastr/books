@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Account extends Model
+class Invoice extends Model
 {
 
     /**
@@ -13,12 +13,14 @@ class Account extends Model
      * @var array
      */
     protected $fillable = [
-        'title',
+        'name',
+        'item',
         'description',
-        'type',
-        'detail',
-        'local_balance',
-        'remote_balance'
+        'quantity',
+        'rate',
+        'memo',
+        'invoiced_at',
+        'due_at'
     ];
 
     /**

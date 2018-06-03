@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Credential;
+use Illuminate\Support\Facades\Log;
 
 class CredentialController extends Controller
 {
@@ -36,14 +37,19 @@ class CredentialController extends Controller
      */
     public function store(Request $request)
     {
-        $credential = new Credential([
-            'name' => $request->get('name'),
-            'data' => $request->get('data')
-        ]);
-        $credential->save();
+        Log::debug('credentials store endpoint was called >>>>>>>>>>>>>>' . json_encode($request));
 
+        dd('anything');
 
-        return response()->json('Credential Added Successfully.');
+//        $credential = new Credential([
+//            'account_id' => 'nothing',
+//            'name' => $request->get('name'),
+//            'data' => $request->get('data')
+//        ]);
+//        $credential->save();
+//
+//
+//        return response()->json('Credential Added Successfully.');
     }
 
     /**

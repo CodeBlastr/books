@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Account;
+use App\Plaid;
 
 class AccountController extends Controller
 {
@@ -14,6 +15,10 @@ class AccountController extends Controller
      */
     public function index()
     {
+        $plaid = new Plaid();
+        $response = $plaid->institutionsGet();
+        return response()->json($response);
+
         $accounts = Account::all();
         return response()->json($accounts);
     }

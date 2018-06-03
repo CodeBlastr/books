@@ -62,10 +62,19 @@ class Plaid extends Model
         $this->uri = 'https://' . $this->environment . '.plaid.com';
     }
 
-    public function request($args = ['type' => 'POST', 'endpoint' => '/categories/get', 'headers' => ['Content-Type' => 'application/json'], 'body' => null]) {
-        $client = new Client();
+    /**
+     * Send a request to Plaid
+     * get a response.
+     *
+     *
+     * @param array $args
+     * @return mixed|string
+     */
+    public function request(array $args = array()) {
+        $client = new Client(); //load guzzle
+        $defaultArgs = ['type' => 'POST', 'endpoint' => '/categories/get', 'headers' => ['Content-Type' => 'application/json'], 'body' => null];
 
-        dd($args);
+        $args = array_merge($defaultArgs, $args);
         
         $response = $client->request('POST', $this->uri . $args['endpoint'], [
             'headers' => $args['headers'],
@@ -80,7 +89,6 @@ class Plaid extends Model
     }
 
     public function testPoint() {
-
         dd($this->request());
     }
 

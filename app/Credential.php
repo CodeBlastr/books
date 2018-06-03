@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Uuid;
 
 class Credential extends Model
 {
@@ -25,7 +26,7 @@ class Credential extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->uuid = (string) Uuid::generate(4);
+            $model->id = (string) Uuid::generate(4);
         });
     }
 

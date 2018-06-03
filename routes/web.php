@@ -19,9 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// testing some stuff
-Route::get('/app',  'AppController@index');
+// this is for testing  (I expect to comment these routes out)
+//Route::get('/accounts',  'AccountController@index');
+Route::get('/credentials/store', 'CredentialController@store');
 
+// this is for production
 Route::any('/{all}', function ($all) {
     return view('welcome');
 })->where(['all' => '.*']);

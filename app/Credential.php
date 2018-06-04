@@ -27,7 +27,6 @@ class Credential extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->user_id = (string) Auth::user()->id;
             $model->id = (string) Uuid::generate(4);
         });
     }

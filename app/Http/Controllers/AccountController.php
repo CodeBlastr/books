@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Credential;
 use App\Account;
 use App\Plaid;
 
@@ -30,7 +31,10 @@ class AccountController extends Controller
      */
     public function create()
     {
-        //
+        $credentials = Credential::where('status', '=', 'unused')->get();
+        $accounts = Account::where('type', '=', 'bank')->get();
+        //return response()->json([$credentials, $accounts]);
+        return view('accounts/create', [$credentials, $accounts]);
     }
 
     /**

@@ -21,6 +21,7 @@ Route::get('/', function () {
 // this is for testing  (I expect to comment these routes out)
 //Route::get('/accounts',  'AccountController@index');
 Route::post('/credentials/store', 'CredentialController@store');
+Route::get('/accounts/create', 'AccountController@create');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

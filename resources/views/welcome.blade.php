@@ -34,6 +34,7 @@
                 // is enabled.
                 $.post('/credentials/store', {
                     public_token: public_token,
+                    metadata: metadata
                 });
             },
             onExit: function(err, metadata) {

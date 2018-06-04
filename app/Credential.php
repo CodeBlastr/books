@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Uuid;
 
 class Credential extends Model
@@ -14,8 +15,8 @@ class Credential extends Model
      * @var array
      */
     protected $fillable = [
-        'account_id',
         'name',
+        'status',
         'data'
     ];
 
@@ -26,6 +27,7 @@ class Credential extends Model
     {
         parent::boot();
         self::creating(function ($model) {
+            $model->user_id = (string) Auth::user()->id;
             $model->id = (string) Uuid::generate(4);
         });
     }

@@ -10,11 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//Route::get('/{any}', function ($any) {
-//
-//    // any other url, subfolders also
-//
-//})->where('any', '.*');
+
+
+Auth::routes();
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -23,7 +22,9 @@ Route::get('/', function () {
 //Route::get('/accounts',  'AccountController@index');
 Route::post('/credentials/store', 'CredentialController@store');
 
+Route::get('/home', 'HomeController@index')->name('home');
+
 // this is for production
-Route::any('/{all}', function ($all) {
-    return view('welcome');
-})->where(['all' => '.*']);
+//Route::any('/{all}', function ($all) {
+//    return view('welcome');
+//})->where(['all' => '.*']);

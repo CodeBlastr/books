@@ -39,7 +39,9 @@ class CredentialController extends Controller
     {
         //['public_token'] => public-sandbox-f99ccb0b-f166-404d-90a5-cff8b80b1632
         $credential = new Credential([
-            'data' => $request->input('public_token')
+            'status' => 'unused',
+            'data' => json_encode($request->input()),
+            'name' => $request->input('metadata')['institution']['name']
         ]);
         $credential->save();
     }

@@ -10,13 +10,15 @@
 </head>
 <body>
 <div id="crud-app"></div>
-<!--script src="{{asset('js/app2.js')}}" ></script-->
-<button id="link-button">Link Account</button>
+<script src="{{asset('js/app3.js')}}"></script>
+
+<!-- for Plaid Link -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
 <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
+
 <script type="text/javascript">
     (function($) {
-        var handler = Plaid.create({
+        handler = Plaid.create({
             clientName: 'Wholesale360 Books',
             env: 'sandbox',
             // Replace with your public_key from the Dashboard
@@ -58,9 +60,9 @@
                 //   view_name:       "MFA",
                 // }
             }
-        });
+        })
 
-        $('#link-button').on('click', function(e) {
+        jQuery('#link-button').on('click', function(e) {
             handler.open();
         });
     })(jQuery);

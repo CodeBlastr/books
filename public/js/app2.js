@@ -13448,8 +13448,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_router__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Master__ = __webpack_require__(281);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_CreateAccount__ = __webpack_require__(282);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_DisplayAccount__ = __webpack_require__(283);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_UpdateAccount__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__accounts_Index__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__accounts_Edit__ = __webpack_require__(285);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Example__ = __webpack_require__(286);
 __webpack_require__(125);
 
@@ -13469,8 +13469,8 @@ Object(__WEBPACK_IMPORTED_MODULE_1_react_dom__["render"])(__WEBPACK_IMPORTED_MOD
         __WEBPACK_IMPORTED_MODULE_2_react_router__["Route"],
         { path: '/', component: __WEBPACK_IMPORTED_MODULE_3__components_Master__["a" /* default */] },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["Route"], { path: '/add-item', component: __WEBPACK_IMPORTED_MODULE_4__components_CreateAccount__["a" /* default */] }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["Route"], { path: '/display-item', component: __WEBPACK_IMPORTED_MODULE_5__components_DisplayAccount__["a" /* default */] }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["Route"], { path: '/edit/:id', component: __WEBPACK_IMPORTED_MODULE_6__components_UpdateAccount__["a" /* default */] }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["Route"], { path: '/accounts', component: __WEBPACK_IMPORTED_MODULE_5__accounts_Index__["a" /* default */] }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["Route"], { path: '/accounts/edit/:id', component: __WEBPACK_IMPORTED_MODULE_6__accounts_Edit__["a" /* default */] }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router__["Route"], { path: '/example', component: __WEBPACK_IMPORTED_MODULE_7__components_Example__["a" /* default */] })
     )
 ), document.getElementById('crud-app'));
@@ -59399,7 +59399,7 @@ var Master = function (_Component) {
                                 null,
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     __WEBPACK_IMPORTED_MODULE_1_react_router__["Link"],
-                                    { to: 'display-item' },
+                                    { to: '/accounts' },
                                     'Accounts'
                                 )
                             )
@@ -59482,7 +59482,7 @@ var CreateAccount = function (_Component) {
             };
             var uri = __WEBPACK_IMPORTED_MODULE_2__MyGlobleSetting__["a" /* default */].url + '/api/accounts';
             axios.post(uri, accounts).then(function (response) {
-                __WEBPACK_IMPORTED_MODULE_1_react_router__["browserHistory"].push('/display-item');
+                __WEBPACK_IMPORTED_MODULE_1_react_router__["browserHistory"].push('/accounts');
             });
         }
     }, {
@@ -59566,8 +59566,8 @@ var CreateAccount = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_router__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__TableRow__ = __webpack_require__(284);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__MyGlobleSetting__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_TableRow__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_MyGlobleSetting__ = __webpack_require__(35);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -59582,24 +59582,24 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var DisplayAccount = function (_Component) {
-    _inherits(DisplayAccount, _Component);
+var ListAccounts = function (_Component) {
+    _inherits(ListAccounts, _Component);
 
-    function DisplayAccount(props) {
-        _classCallCheck(this, DisplayAccount);
+    function ListAccounts(props) {
+        _classCallCheck(this, ListAccounts);
 
-        var _this = _possibleConstructorReturn(this, (DisplayAccount.__proto__ || Object.getPrototypeOf(DisplayAccount)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (ListAccounts.__proto__ || Object.getPrototypeOf(ListAccounts)).call(this, props));
 
         _this.state = { value: '', accounts: '' };
         return _this;
     }
 
-    _createClass(DisplayAccount, [{
+    _createClass(ListAccounts, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(__WEBPACK_IMPORTED_MODULE_4__MyGlobleSetting__["a" /* default */].url + '/api/accounts').then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(__WEBPACK_IMPORTED_MODULE_4__components_MyGlobleSetting__["a" /* default */].url + '/api/accounts').then(function (response) {
                 _this2.setState({ accounts: response.data });
             }).catch(function (error) {
                 console.log(error);
@@ -59610,7 +59610,7 @@ var DisplayAccount = function (_Component) {
         value: function tabRow() {
             if (this.state.accounts instanceof Array) {
                 return this.state.accounts.map(function (object, i) {
-                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__TableRow__["a" /* default */], { key: i, data: JSON.stringify(object) });
+                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_TableRow__["a" /* default */], { key: i, data: JSON.stringify(object) });
                 });
             }
         }
@@ -59681,10 +59681,10 @@ var DisplayAccount = function (_Component) {
         }
     }]);
 
-    return DisplayAccount;
+    return ListAccounts;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
-/* harmony default export */ __webpack_exports__["a"] = (DisplayAccount);
+/* harmony default export */ __webpack_exports__["a"] = (ListAccounts);
 
 /***/ }),
 /* 284 */
@@ -59738,17 +59738,17 @@ var TableRow = function (_Component) {
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'td',
                     null,
-                    this.data.id
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    'td',
-                    null,
                     this.data.title
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'td',
                     null,
-                    this.data.body
+                    this.data.type
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'td',
+                    null,
+                    this.data.detail
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'td',
@@ -59758,7 +59758,7 @@ var TableRow = function (_Component) {
                         { onSubmit: this.handleSubmit },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             __WEBPACK_IMPORTED_MODULE_1_react_router__["Link"],
-                            { to: "edit/" + this.data.id, className: 'btn btn-primary' },
+                            { to: "accounts/edit/" + this.data.id, className: 'btn btn-primary' },
                             'Edit'
                         ),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'submit', value: 'Delete', className: 'btn btn-danger' })
@@ -59784,7 +59784,7 @@ var TableRow = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_router__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MyGlobleSetting__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_MyGlobleSetting__ = __webpack_require__(35);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -59798,13 +59798,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var UpdateAccount = function (_Component) {
-    _inherits(UpdateAccount, _Component);
+var EditAccount = function (_Component) {
+    _inherits(EditAccount, _Component);
 
-    function UpdateAccount(props) {
-        _classCallCheck(this, UpdateAccount);
+    function EditAccount(props) {
+        _classCallCheck(this, EditAccount);
 
-        var _this = _possibleConstructorReturn(this, (UpdateAccount.__proto__ || Object.getPrototypeOf(UpdateAccount)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (EditAccount.__proto__ || Object.getPrototypeOf(EditAccount)).call(this, props));
 
         _this.state = { title: '', body: '' };
         _this.handleChange1 = _this.handleChange1.bind(_this);
@@ -59813,12 +59813,12 @@ var UpdateAccount = function (_Component) {
         return _this;
     }
 
-    _createClass(UpdateAccount, [{
+    _createClass(EditAccount, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(__WEBPACK_IMPORTED_MODULE_3__MyGlobleSetting__["a" /* default */].url + ('/api/accounts/' + this.props.params.id + '/edit')).then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(__WEBPACK_IMPORTED_MODULE_3__components_MyGlobleSetting__["a" /* default */].url + ('/api/accounts/' + this.props.params.id + '/edit')).then(function (response) {
                 _this2.setState({ title: response.data.title, body: response.data.body });
             }).catch(function (error) {
                 console.log(error);
@@ -59848,9 +59848,9 @@ var UpdateAccount = function (_Component) {
                 title: this.state.title,
                 body: this.state.body
             };
-            var uri = __WEBPACK_IMPORTED_MODULE_3__MyGlobleSetting__["a" /* default */].url + '/api/accounts/' + this.props.params.id;
+            var uri = __WEBPACK_IMPORTED_MODULE_3__components_MyGlobleSetting__["a" /* default */].url + '/api/accounts/' + this.props.params.id;
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.patch(uri, accounts).then(function (response) {
-                _this3.props.history.push('/display-item');
+                _this3.props.history.push('/accounts');
             });
         }
     }, {
@@ -59873,7 +59873,7 @@ var UpdateAccount = function (_Component) {
                         { className: 'col-md-2' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             __WEBPACK_IMPORTED_MODULE_2_react_router__["Link"],
-                            { to: '/display-item', className: 'btn btn-success' },
+                            { to: '/accounts', className: 'btn btn-success' },
                             'Return to Account'
                         )
                     )
@@ -59915,10 +59915,10 @@ var UpdateAccount = function (_Component) {
         }
     }]);
 
-    return UpdateAccount;
+    return EditAccount;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
-/* harmony default export */ __webpack_exports__["a"] = (UpdateAccount);
+/* harmony default export */ __webpack_exports__["a"] = (EditAccount);
 
 /***/ }),
 /* 286 */

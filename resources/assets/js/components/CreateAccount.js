@@ -30,7 +30,7 @@ class CreateAccount extends Component {
         }
         let uri = MyGlobleSetting.url + '/api/accounts';
         axios.post(uri, accounts).then((response) => {
-            browserHistory.push('/display-item');
+            browserHistory.push('/accounts');
     });
     }
 

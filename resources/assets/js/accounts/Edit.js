@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import { Link } from 'react-router';
-import MyGlobleSetting from './MyGlobleSetting';
+import MyGlobleSetting from '../components/MyGlobleSetting';
 
 
-class UpdateAccount extends Component {
+class EditAccount extends Component {
     constructor(props) {
         super(props);
         this.state = {title: '', body: ''};
@@ -43,7 +43,7 @@ class UpdateAccount extends Component {
         }
         let uri = MyGlobleSetting.url + '/api/accounts/'+this.props.params.id;
         axios.patch(uri, accounts).then((response) => {
-            this.props.history.push('/display-item');
+            this.props.history.push('/accounts');
     });
     }
     render(){
@@ -53,7 +53,7 @@ class UpdateAccount extends Component {
                 <div className="row">
                     <div className="col-md-10"></div>
                     <div className="col-md-2">
-                        <Link to="/display-item" className="btn btn-success">Return to Account</Link>
+                        <Link to="/accounts" className="btn btn-success">Return to Account</Link>
                     </div>
                 </div>
                 <form onSubmit={this.handleSubmit}>
@@ -73,4 +73,4 @@ class UpdateAccount extends Component {
         )
     }
 }
-export default UpdateAccount;
+export default EditAccount;

@@ -13,7 +13,7 @@ class Master extends Component {
                         <ul className="nav navbar-nav">
                             <li><Link to="/">Home</Link></li>
                             <li><Link to="add-item">Create Account</Link></li>
-                            <li><Link to="display-item">Accounts</Link></li>
+                            <li><Link to="/accounts">Accounts</Link></li>
                         </ul>
                     </div>
                 </nav>

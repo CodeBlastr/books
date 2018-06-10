@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Uuid;
 
 class Transaction extends Model
 {
@@ -31,7 +32,7 @@ class Transaction extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->uuid = (string) Uuid::generate(4);
+            $model->id = (string) Uuid::generate(4);
         });
     }
 

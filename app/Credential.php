@@ -8,7 +8,6 @@ use Uuid;
 
 class Credential extends Model
 {
-
     /**
      * The attributes that are mass assignable.
      *

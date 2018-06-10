@@ -15,7 +15,23 @@
                         @endif
 
                         well let's look at some accounts
-                        {{ $items }}
+                            @foreach ($accounts as $account)
+                                <p>This is account {{ $account->id }}</p>
+                            @endforeach
+
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                @foreach ($credentials as $credential)
+
+                                    <tr>
+                                        <td>{{ $credential->name }}</td>
+                                        <td>{{ $credential->status }}</td>
+                                        <td>{{ $credential->data }}</td>
+                                    </tr>
+
+                                @endforeach
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

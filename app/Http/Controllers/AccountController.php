@@ -34,7 +34,7 @@ class AccountController extends Controller
         $credentials = Credential::where('status', '=', 'unused')->get();
         $accounts = Account::where('type', '=', 'bank')->get();
         //return response()->json([$credentials, $accounts]);
-        return view('accounts/create', [$credentials, $accounts]);
+        return view('accounts/create')->with(compact('credentials', 'accounts'));
     }
 
     /**

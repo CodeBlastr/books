@@ -7,7 +7,6 @@ class TableRow extends Component {
     constructor(props) {
         super(props);
         this.data = JSON.parse(this.props.data);
-        console.log(this.data);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleSubmit(event) {
@@ -17,21 +16,26 @@ class TableRow extends Component {
         window.location.reload();
     }
     render() {
+        const rows = [];
+        const account = this.props.account;
+
+        this.data.public_data.metadata.accounts.forEach((account) => {
+            rows.push(
+                <CredentialButtons account={account} key={account.id} />
+            )
+            });
         return (
             <tr>
                 <td>
                     {this.data.name}
                 </td>
-                    <td>
-                    {this.data.status}
-                </td>
                 <td>
-                    {this.data.data}
-                </td>
-                <td>
-                    <form onSubmit={this.handleSubmit}>
-                        <Link to={"credentials/edit/"+this.data.id} className="btn btn-primary">Edit</Link>
-                        <input type="submit" value="Delete" className="btn btn-danger"/>
+                    <form onSubmit={this.handlesubmit}>
+                        <table className="table table-bordered">
+                            <tbody>
+                                {rows}
+                            </tbody>
+                        </table>
                     </form>
                 </td>
             </tr>
@@ -41,3 +45,20 @@ class TableRow extends Component {
 
 
 export default TableRow;
+
+
+
+class CredentialButtons extends Component {
+    render() {
+        const account = this.props.account;
+        return (
+            <tr>
+                <td>{ account.name } ( { account.mask } )</td>
+                <td className="text-center"><Link to = { "credentials/link/" + account.id } className="btn btn-primary">Link Connection</Link></td>
+                <td className="text-center"><input type="submit" value="Delete" className="btn btn-danger"/></td>
+            </tr>
+        );
+    }
+}
+
+;

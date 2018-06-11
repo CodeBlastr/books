@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use App\Credential;
 use App\Account;
-use App\Transaction;
+use App\Credential;
 use App\Plaid;
+use App\Transaction;
+
 
 class AccountController extends Controller
 {
@@ -18,11 +19,6 @@ class AccountController extends Controller
      */
     public function index()
     {
-//        $plaid = new Plaid();
-//        $response = $plaid->institutionsGet();
-//        return response()->json($response);
-
-        $credentials = Credential::where('status', '=', 'unused')->get();
         $accounts = Account::all();
         return response()->json($accounts);
     }
@@ -66,10 +62,16 @@ class AccountController extends Controller
      */
     public function show($id)
     {
-
         $account = Account::find($id);
-
         if (!empty($account)) {
+            $credential = Credential::where('id', '=', $account->credential_id)->first();
+            dd(json_decode($credential->public_data));
+
+
+            $response = Plaid::request(['endpoint' => '/transactions/get']);
+            dd($response);
+            return response()->json($response);
+
             $transactions = Transaction::where('account_id', '=', $id)->get();
             return view('accounts/show')->with(compact('account', 'transactions'));
         } else {

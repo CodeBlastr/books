@@ -10,34 +10,39 @@ use GuzzleHttp\Client;
 class Plaid extends Model
 {
     /**
-     * @var null|string
+     * @var bool
      */
-    protected $clientId = null;
+    private static $init = false;
 
     /**
      * @var null|string
      */
-    protected $secret = null;
+    protected static $clientId = null;
 
     /**
      * @var null|string
      */
-    protected $publicKey = null;
+    protected static $secret = null;
 
     /**
      * @var null|string
      */
-    protected $environment = null;
+    protected static $publicKey = null;
 
     /**
      * @var null|string
      */
-    protected $uri = null;
+    protected static $environment = null;
 
     /**
      * @var null|string
      */
-    protected $endpoint = null;
+    protected static $uri = null;
+
+    /**
+     * @var null|string
+     */
+    protected static $endpoint = null;
     /**
      * The attributes that are mass assignable.
      *
@@ -53,13 +58,22 @@ class Plaid extends Model
      */
     public function __construct(array $attributes = array())
     {
-        parent::__construct($attributes);
+        // not needed, will never be instantiated
+    }
 
-        $this->clientId = env('PLAID_CLIENT_ID');
-        $this->secret = env('PLAID_SECRET');
-        $this->publicKey = env('PLAID_PUBLIC_KEY');
-        $this->environment = env('PLAID_ENV');
-        $this->uri = 'https://' . $this->environment . '.plaid.com';
+    public static function init()
+    {
+        if (!self::$init) {
+
+            self::$clientId = env('PLAID_CLIENT_ID');
+            self::$secret = env('PLAID_SECRET');
+            self::$publicKey = env('PLAID_PUBLIC_KEY');
+            self::$environment = env('PLAID_ENV');
+            self::$uri = 'https://' . self::$environment . '.plaid.com';
+
+            // set flag to avoid re-loading if init() called again
+            self::$init = true;
+        }
     }
 
     /**
@@ -70,13 +84,15 @@ class Plaid extends Model
      * @param array $args
      * @return mixed|string
      */
-    public function request(array $args = array()) {
+    public static function request(array $args = array()) {
+        self::init();
         $client = new Client(); //load guzzle
-        $defaultArgs = ['type' => 'POST', 'endpoint' => '/categories/get', 'headers' => ['Content-Type' => 'application/json'], 'body' => null];
-
-        $args = array_merge($defaultArgs, $args);
+        $defaultArgs = ['type' => 'POST', 'endpoint' => '/categories/get', 'headers' => ['Content-Type' => 'application/json'], 'body' => ['client_id' => self::$clientId, 'secret' => self::$secret]];
         
-        $response = $client->request('POST', $this->uri . $args['endpoint'], [
+        $args['body'] = array_merge($defaultArgs['body'], $args['body']);
+        $args = array_merge($defaultArgs, $args);
+
+        $response = $client->request('POST', self::$uri . $args['endpoint'], [
             'headers' => $args['headers'],
             'body' => json_encode($args['body'])
         ]);

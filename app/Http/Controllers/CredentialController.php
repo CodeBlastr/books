@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Credential;
 use Illuminate\Support\Facades\Log;
+use App\Plaid;
 
 class CredentialController extends Controller
 {
@@ -15,7 +16,7 @@ class CredentialController extends Controller
      */
     public function index()
     {
-        $credentials = Credential::all();
+        $credentials = Credential::decode(Credential::where('status', '=', 'unused')->get());
         return response()->json($credentials);
     }
 
@@ -34,16 +35,18 @@ class CredentialController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * @todo Change this to a api call with json output for react to digest
      */
     public function store(Request $request)
     {
-        //['public_token'] => public-sandbox-f99ccb0b-f166-404d-90a5-cff8b80b1632
         $credential = new Credential([
             'status' => 'unused',
-            'data' => json_encode($request->input()),
+            'public_data' =>json_encode($request->input()),
+            'private_data' => json_encode(Plaid::request(['endpoint' => '/item/public_token/exchange', 'body' => ['public_token' => $request->input('public_token')]])),
             'name' => $request->input('metadata')['institution']['name']
         ]);
-        $credential->save();
+
+        return response()->json($credential->save());
     }
 
     /**

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
-use Uuid;
+use App\Uuid;
 
 class Credential extends Model
 {
@@ -16,7 +16,8 @@ class Credential extends Model
     protected $fillable = [
         'name',
         'status',
-        'data'
+        'public_data',
+        'private_data'
     ];
 
     /**
@@ -28,6 +29,17 @@ class Credential extends Model
         self::creating(function ($model) {
             $model->id = (string) Uuid::generate(4);
         });
+
+
+    }
+
+    public static function decode($items = null)
+    {
+
+        for ($i = 0; $i < count($items); $i++) {
+            $items[$i]->public_data = json_decode($items[$i]->public_data);
+        }
+        return $items;
     }
 
 }

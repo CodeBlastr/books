@@ -64,13 +64,14 @@ class ListAccounts extends Component {
                         {this.tabRow()}
                     </tbody>
                 </table>
+
+                <h1>Unlinked Connections</h1>
+
                 <table className="table table-hover">
                     <thead>
                     <tr>
-                    <td>Name</td>
-                    <td>Account Title</td>
-                <td>Account Body</td>
-                <td width="200px">Actions</td>
+                        <td>Name</td>
+                        <td>Accounts</td>
                     </tr>
                     </thead>
                     <tbody>

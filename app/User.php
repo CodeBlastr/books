@@ -9,6 +9,11 @@ use Uuid;
 class User extends Authenticatable
 {
     use Notifiable;
+    
+    /**
+     * @var string
+     */
+    protected $keyType = 'string';
 
     /**
      * The attributes that are mass assignable.

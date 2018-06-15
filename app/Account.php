@@ -7,6 +7,10 @@ use Uuid;
 
 class Account extends Model
 {
+    /**
+     * @var string
+     */
+    protected $keyType = 'string';
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +23,8 @@ class Account extends Model
         'type',
         'detail',
         'local_balance',
-        'remote_balance'
+        'remote_balance',
+        'credential_id'
     ];
 
     /**

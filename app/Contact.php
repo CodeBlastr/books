@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model
 {
+    /**
+     * @var string
+     */
+    protected $keyType = 'string';
 
     /**
      * The attributes that are mass assignable.

@@ -6,7 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 
-
+/**
+ * Class Plaid
+ * @package App
+ *
+ * @todo Probably don't need to extend Model on
+ * this class (remove here and above)
+ */
 class Plaid extends Model
 {
     /**

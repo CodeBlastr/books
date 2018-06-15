@@ -7,6 +7,10 @@ use Uuid;
 
 class Invoice extends Model
 {
+    /**
+     * @var string
+     */
+    protected $keyType = 'string';
 
     /**
      * The attributes that are mass assignable.

@@ -46,7 +46,7 @@ class AccountController extends Controller
     {
         $account = new Account([
             'title' => $request->get('title'),
-            'body' => $request->get('body')
+            'type' => $request->get('type')
         ]);
         $account->save();
 

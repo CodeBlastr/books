@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
-import MyGlobleSetting from './MyGlobleSetting';
+import MyGlobleSetting from '../components/MyGlobleSetting';
 
 
-class CreateAccount extends Component {
+class AddAccount extends Component {
     constructor(props){
         super(props);
         this.state = {accountTitle: '', accountBody: ''};
@@ -26,7 +26,7 @@ class CreateAccount extends Component {
         e.preventDefault();
         const accounts = {
             title: this.state.accountTitle,
-            body: this.state.accountBody
+            type: this.state.accountType
         }
         let uri = MyGlobleSetting.url + '/api/accounts';
         axios.post(uri, accounts).then((response) => {
@@ -51,8 +51,10 @@ class CreateAccount extends Component {
                     <div className="row">
                         <div className="col-md-6">
                             <div className="form-group">
-                                <label>Account Body:</label>
-                                <textarea className="form-control col-md-6" onChange={this.handleChange2}></textarea>
+                                <label>Type:</label>
+                                <select className="form-control col-md-6" onChange={this.handleChange2}>
+                                    <option value="something">Something</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -65,4 +67,4 @@ class CreateAccount extends Component {
         )
     }
 }
-export default CreateAccount;
+export default AddAccount;

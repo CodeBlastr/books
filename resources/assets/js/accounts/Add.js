@@ -9,7 +9,9 @@ import Alert from '../components/Alert';
 class AddAccount extends Component {
     constructor(props){
         super(props);
-        this.state = {accountTitle: this.props.account.name + " (" + this.props.account.mask + ")", accountType: this.props.account.type, accountCredentialId: this.props.credential.id};
+
+        this.credential = JSON.parse(this.props.credential);
+        this.state = {accountTitle: this.props.account.name + " (" + this.props.account.mask + ")", accountType: this.props.account.type, accountCredentialId: this.credential.id};
         this.handleChange1 = this.handleChange1.bind(this);
         this.handleChange2 = this.handleChange2.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,16 +32,17 @@ class AddAccount extends Component {
 
         ReactDOM.render(<Loading />, document.getElementById('loading'));
 
-        const accounts = {
+        const account = {
             title: this.state.accountTitle,
             type: this.state.accountType,
             credential_id: this.state.accountCredentialId
         }
         let uri = MyGlobleSetting.url + '/api/accounts';
 
-        axios.post(uri, accounts).then((response) => {
+        axios.post(uri, account).then((response) => {
             browserHistory.push('/accounts');
             ReactDOM.render( <Alert autodismiss="2000" status="alert-success" message={ response.data } />, document.getElementById('loading'));
+            ReactDOM.render( <div />, document.getElementById("credential-" + this.props.account.id));
         }).catch(function (error) {
             ReactDOM.render( <Alert status="alert-danger" message={ error.toString() } />, document.getElementById('loading'));
         });
@@ -49,10 +52,8 @@ class AddAccount extends Component {
     render() {
 
         return (
-            <div>
-                <h1>Create Account</h1>
+            <div id={"credential-" + this.props.account.id }>
                 <form onSubmit={this.handleSubmit}>
-                    <input type="hidden" className="form-control" value={this.props.credential.id} />
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group">

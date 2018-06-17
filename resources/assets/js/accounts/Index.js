@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import { Link } from 'react-router';
 import TableRow from '../components/TableRow'; // @todo move this to accounts/TableRow
-import CredentialRow from '../credentials/TableRow';
+import CredentialRow from '../credentials/CredentialRow';
 import MyGlobleSetting from '../components/MyGlobleSetting';
 
 class ListAccounts extends Component {

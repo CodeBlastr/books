@@ -1,31 +1,35 @@
 import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
 import MyGlobleSetting from '../components/MyGlobleSetting';
+import AddAccount from '../accounts/Add';
 
 
-class TableRow extends Component {
+class CredentialRow extends Component {
+
     constructor(props) {
         super(props);
         this.data = JSON.parse(this.props.data);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
     handleSubmit(event) {
         event.preventDefault();
         let uri = MyGlobleSetting.url + `/api/credentials/${this.data.id}`;
         axios.delete(uri);
         window.location.reload();
     }
+
     render() {
-        const rows = [];
+        const credentialAccounts = [];
         const account = this.props.account;
         const credential = this.props.data;
 
         this.data.public_data.metadata.accounts.forEach((account) => {
-            rows.push(
-                <CredentialButtons credential={credential} account={account} key={account.id} />
+            credentialAccounts.push(
+                <AddAccount credential={ credential } account={ account } key={ account.id } />
             )
-            });
-        
+        });
+
         return (
             <tr>
                 <td>
@@ -37,17 +41,16 @@ class TableRow extends Component {
                         <div className="modal-dialog" role="document">
                             <div className="modal-content">
                                 <div className="modal-header">
-                                    <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <h2 className="modal-title pull-left" id="exampleModalLabel">Link {this.data.name} Accounts</h2>
                                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div className="modal-body">
-                                    {rows}
+                                    { credentialAccounts }
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" className="btn btn-primary">Save changes</button>
                                 </div>
                             </div>
                         </div>
@@ -59,22 +62,4 @@ class TableRow extends Component {
 }
 
 
-export default TableRow;
-
-
-
-import AddAccount from '../accounts/Add';
-
-class CredentialButtons extends Component {
-    render() {
-        const account = this.props.account;
-        const credential = JSON.parse(this.props.credential);
-        return (
-
-            <AddAccount credential={ credential } account={ account } key={ account.id } />
-
-        );
-    }
-}
-
-;
+export default CredentialRow;

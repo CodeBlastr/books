@@ -9,22 +9,25 @@ import Alert from '../components/Alert';
 class AddAccount extends Component {
     constructor(props){
         super(props);
-
         this.credential = JSON.parse(this.props.credential);
-        this.state = {accountTitle: this.props.account.name + " (" + this.props.account.mask + ")", accountType: this.props.account.type, accountCredentialId: this.credential.id};
-        this.handleChange1 = this.handleChange1.bind(this);
-        this.handleChange2 = this.handleChange2.bind(this);
+        this.state = {
+            title: this.props.account.name + " (" + this.props.account.mask + ")",
+            type: this.props.account.type,
+            detail: this.props.account.subtype,
+            credential_id: this.credential.id
+        };
+        this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-    handleChange1(e){ // give this a better name
+
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
         this.setState({
-            accountTitle: e.target.value
-        })
-    }
-    handleChange2(e){ // give this a better name
-        this.setState({
-            accountType: e.target.value
-        })
+            [name]: value
+        });
     }
 
     handleSubmit(e){
@@ -33,9 +36,10 @@ class AddAccount extends Component {
         ReactDOM.render(<Loading />, document.getElementById('loading'));
 
         const account = {
-            title: this.state.accountTitle,
-            type: this.state.accountType,
-            credential_id: this.state.accountCredentialId
+            title: this.state.title,
+            type: this.state.type,
+            detail: this.state.detail,
+            credential_id: this.state.credential_id
         }
         let uri = MyGlobleSetting.url + '/api/accounts';
 
@@ -58,15 +62,24 @@ class AddAccount extends Component {
                         <div className="col-md-12">
                             <div className="form-group">
                                 <label>Account Nickname:</label>
-                                <input type="text" className="form-control" onChange={this.handleChange1} value={this.props.account.name + " (" + this.props.account.mask + ")"} />
+                                <input name="title" type="text" className="form-control" onChange={this.handleInputChange} value={this.props.account.name + " (" + this.props.account.mask + ")"} />
                             </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group">
-                                <select className="form-control col-md-6" onChange={this.handleChange2}>
+                                <select name="type" className="form-control col-md-6" onChange={this.handleInputChange}>
                                     <option value={ this.props.account.type }>{ this.props.account.type }</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="form-group">
+                                <select name="detail" className="form-control col-md-6" onChange={this.handleInputChange}>
+                                    <option value={ this.props.account.subtype }>{ this.props.account.subtype }</option>
                                 </select>
                             </div>
                         </div>

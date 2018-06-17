@@ -13442,6 +13442,8 @@ module.exports = exports['default'];
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Alert__ = __webpack_require__(287);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -13464,28 +13466,25 @@ var AddAccount = function (_Component) {
         var _this = _possibleConstructorReturn(this, (AddAccount.__proto__ || Object.getPrototypeOf(AddAccount)).call(this, props));
 
         _this.credential = JSON.parse(_this.props.credential);
-        _this.state = { accountTitle: _this.props.account.name + " (" + _this.props.account.mask + ")", accountType: _this.props.account.type, accountCredentialId: _this.credential.id };
-        _this.handleChange1 = _this.handleChange1.bind(_this);
-        _this.handleChange2 = _this.handleChange2.bind(_this);
+        _this.state = {
+            title: _this.props.account.name + " (" + _this.props.account.mask + ")",
+            type: _this.props.account.type,
+            detail: _this.props.account.subtype,
+            credential_id: _this.credential.id
+        };
+        _this.handleInputChange = _this.handleInputChange.bind(_this);
         _this.handleSubmit = _this.handleSubmit.bind(_this);
         return _this;
     }
 
     _createClass(AddAccount, [{
-        key: 'handleChange1',
-        value: function handleChange1(e) {
-            // give this a better name
-            this.setState({
-                accountTitle: e.target.value
-            });
-        }
-    }, {
-        key: 'handleChange2',
-        value: function handleChange2(e) {
-            // give this a better name
-            this.setState({
-                accountType: e.target.value
-            });
+        key: 'handleInputChange',
+        value: function handleInputChange(event) {
+            var target = event.target;
+            var value = target.type === 'checkbox' ? target.checked : target.value;
+            var name = target.name;
+
+            this.setState(_defineProperty({}, name, value));
         }
     }, {
         key: 'handleSubmit',
@@ -13497,9 +13496,10 @@ var AddAccount = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_Loading__["a" /* default */], null), document.getElementById('loading'));
 
             var account = {
-                title: this.state.accountTitle,
-                type: this.state.accountType,
-                credential_id: this.state.accountCredentialId
+                title: this.state.title,
+                type: this.state.type,
+                detail: this.state.detail,
+                credential_id: this.state.credential_id
             };
             var uri = __WEBPACK_IMPORTED_MODULE_3__components_MyGlobleSetting__["a" /* default */].url + '/api/accounts';
 
@@ -13535,7 +13535,7 @@ var AddAccount = function (_Component) {
                                     null,
                                     'Account Nickname:'
                                 ),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', onChange: this.handleChange1, value: this.props.account.name + " (" + this.props.account.mask + ")" })
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { name: 'title', type: 'text', className: 'form-control', onChange: this.handleInputChange, value: this.props.account.name + " (" + this.props.account.mask + ")" })
                             )
                         )
                     ),
@@ -13550,11 +13550,32 @@ var AddAccount = function (_Component) {
                                 { className: 'form-group' },
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'select',
-                                    { className: 'form-control col-md-6', onChange: this.handleChange2 },
+                                    { name: 'type', className: 'form-control col-md-6', onChange: this.handleInputChange },
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                         'option',
                                         { value: this.props.account.type },
                                         this.props.account.type
+                                    )
+                                )
+                            )
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'row' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'div',
+                            { className: 'col-md-12' },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                'div',
+                                { className: 'form-group' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                    'select',
+                                    { name: 'detail', className: 'form-control col-md-6', onChange: this.handleInputChange },
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                        'option',
+                                        { value: this.props.account.subtype },
+                                        this.props.account.subtype
                                     )
                                 )
                             )

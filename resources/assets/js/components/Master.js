@@ -2,7 +2,22 @@ import React, {Component} from 'react';
 import { Router, Route, Link } from 'react-router';
 
 class Master extends Component {
+
+    constructor(props) {
+        super(props);
+
+        //this.props.handleOverlay = this.handleOverlay.bind(this);
+    }
+
+    //handleOverlay(event) {
+    //    console.log(event);
+    //    var loadingOverlay = document.getElementById('loading-overlay');
+    //    loadingOverlay.style.display = "block";
+    //}
+
+
     render(){
+
         return (
             <div className="container">
                 <nav className="navbar navbar-default">

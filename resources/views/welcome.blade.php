@@ -7,10 +7,46 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Laravel 5.5 ReactJS CRUD Example</title>
     <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
+    <style>
+        .loading-overlay {
+            position: fixed;
+            background: #000;
+            opacity: 0.7;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 10000;
+        }
+        .glyphicon-refresh-animate {
+            -animation: spin 1.1s infinite linear;
+            -ms-animation: spin 1.1s infinite linear;
+            -webkit-animation: spinw 1.1s infinite linear;
+            -moz-animation: spinm 1.1s infinite linear;
+            top: 150px;
+            font-size: 100px;
+        }
+
+        @keyframes spin {
+            from { transform: scale(1) rotate(0deg);}
+            to { transform: scale(1) rotate(360deg);}
+        }
+
+        @-webkit-keyframes spinw {
+            from { -webkit-transform: rotate(0deg);}
+            to { -webkit-transform: rotate(360deg);}
+        }
+
+        @-moz-keyframes spinm {
+            from { -moz-transform: rotate(0deg);}
+            to { -moz-transform: rotate(360deg);}
+        }
+    </style>
 </head>
 <body>
+<div id="loading"></div>
 <div id="crud-app"></div>
-<script src="{{asset('js/app4.js')}}"></script>
+<script src="{{asset('js/app5.js')}}"></script>
 
 <!-- for Plaid Link -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>

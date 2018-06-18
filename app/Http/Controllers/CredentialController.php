@@ -83,10 +83,8 @@ class CredentialController extends Controller
     public function update(Request $request, $id)
     {
         $credential = Credential::find($id);
-        $credential->title = $request->get('title');
-        $credential->body = $request->get('body');
+        $credential->name = $request->get('name');
         $credential->save();
-
 
         return response()->json('Credential Updated Successfully.');
     }
@@ -101,7 +99,6 @@ class CredentialController extends Controller
     {
         $credential = Credential::find($id);
         $credential->delete();
-
 
         return response()->json('Credential Deleted Successfully.');
     }

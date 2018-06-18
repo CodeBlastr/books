@@ -32,7 +32,6 @@ class AddAccount extends Component {
 
     handleSubmit(e){
         e.preventDefault();
-
         ReactDOM.render(<Loading />, document.getElementById('loading'));
 
         const account = {
@@ -43,7 +42,7 @@ class AddAccount extends Component {
             plaid_id: this.state.plaid_id
         }
         let uri = MyGlobleSetting.url + '/api/accounts';
-        
+
         axios.post(uri, account).then((response) => {
             browserHistory.push('/accounts');
             ReactDOM.render( <Alert autodismiss="2000" status="alert-success" message={ response.data } />, document.getElementById('loading'));

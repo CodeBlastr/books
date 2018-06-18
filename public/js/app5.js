@@ -13492,7 +13492,6 @@ var AddAccount = function (_Component) {
             var _this2 = this;
 
             e.preventDefault();
-
             __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_Loading__["a" /* default */], null), document.getElementById('loading'));
 
             var account = {
@@ -60129,18 +60128,27 @@ var Alert = function (_Component) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_router__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_MyGlobleSetting__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_router__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_react_router__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_MyGlobleSetting__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Loading__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Alert__ = __webpack_require__(287);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
 
 
 
@@ -60155,9 +60163,8 @@ var EditAccount = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (EditAccount.__proto__ || Object.getPrototypeOf(EditAccount)).call(this, props));
 
-        _this.state = { title: '', body: '' };
-        _this.handleChange1 = _this.handleChange1.bind(_this);
-        _this.handleChange2 = _this.handleChange2.bind(_this);
+        _this.state = { title: '', description: '' };
+        _this.handleInputChange = _this.handleInputChange.bind(_this);
         _this.handleSubmit = _this.handleSubmit.bind(_this);
         return _this;
     }
@@ -60167,25 +60174,20 @@ var EditAccount = function (_Component) {
         value: function componentDidMount() {
             var _this2 = this;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(__WEBPACK_IMPORTED_MODULE_3__components_MyGlobleSetting__["a" /* default */].url + ('/api/accounts/' + this.props.params.id + '/edit')).then(function (response) {
-                _this2.setState({ title: response.data.title, body: response.data.body });
+            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.get(__WEBPACK_IMPORTED_MODULE_4__components_MyGlobleSetting__["a" /* default */].url + ('/api/accounts/' + this.props.params.id + '/edit')).then(function (response) {
+                _this2.setState({ title: response.data.title, description: response.data.description });
             }).catch(function (error) {
                 console.log(error);
             });
         }
     }, {
-        key: 'handleChange1',
-        value: function handleChange1(e) {
-            this.setState({
-                title: e.target.value
-            });
-        }
-    }, {
-        key: 'handleChange2',
-        value: function handleChange2(e) {
-            this.setState({
-                body: e.target.value
-            });
+        key: 'handleInputChange',
+        value: function handleInputChange(event) {
+            var target = event.target;
+            var value = target.type === 'checkbox' ? target.checked : target.value;
+            var name = target.name;
+
+            this.setState(_defineProperty({}, name, value));
         }
     }, {
         key: 'handleSubmit',
@@ -60193,13 +60195,19 @@ var EditAccount = function (_Component) {
             var _this3 = this;
 
             event.preventDefault();
+            __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_Loading__["a" /* default */], null), document.getElementById('loading'));
+
             var accounts = {
                 title: this.state.title,
-                body: this.state.body
+                description: this.state.description
             };
-            var uri = __WEBPACK_IMPORTED_MODULE_3__components_MyGlobleSetting__["a" /* default */].url + '/api/accounts/' + this.props.params.id;
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.patch(uri, accounts).then(function (response) {
+            var uri = __WEBPACK_IMPORTED_MODULE_4__components_MyGlobleSetting__["a" /* default */].url + '/api/accounts/' + this.props.params.id;
+            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.patch(uri, accounts).then(function (response) {
                 _this3.props.history.push('/accounts');
+                __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_Alert__["a" /* default */], { autodismiss: '2000', status: 'alert-success', message: response.data }), document.getElementById('loading'));
+                __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null), document.getElementById("credential-" + _this3.props.account.id));
+            }).catch(function (error) {
+                __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_Alert__["a" /* default */], { status: 'alert-danger', message: error.toString() }), document.getElementById('loading'));
             });
         }
     }, {
@@ -60221,7 +60229,7 @@ var EditAccount = function (_Component) {
                         'div',
                         { className: 'col-md-2' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            __WEBPACK_IMPORTED_MODULE_2_react_router__["Link"],
+                            __WEBPACK_IMPORTED_MODULE_3_react_router__["Link"],
                             { to: '/accounts', className: 'btn btn-success' },
                             'Return to Account'
                         )
@@ -60238,7 +60246,7 @@ var EditAccount = function (_Component) {
                             null,
                             'Account Title'
                         ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', value: this.state.title, onChange: this.handleChange1 })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { name: 'title', type: 'text', className: 'form-control', value: this.state.title, onChange: this.handleInputChange })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
@@ -60248,7 +60256,7 @@ var EditAccount = function (_Component) {
                             { name: 'account_body' },
                             'Account Body'
                         ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { className: 'form-control', onChange: this.handleChange2, value: this.state.body })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { name: 'description', className: 'form-control', onChange: this.handleInputChange, value: this.state.description })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',

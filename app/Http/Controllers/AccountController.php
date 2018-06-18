@@ -107,7 +107,7 @@ class AccountController extends Controller
     {
         $account = Account::find($id);
         $account->title = $request->get('title');
-        $account->body = $request->get('body');
+        $account->description = $request->get('description');
         $account->save();
 
 

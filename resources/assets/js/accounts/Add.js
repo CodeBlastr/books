@@ -14,7 +14,8 @@ class AddAccount extends Component {
             title: this.props.account.name + " (" + this.props.account.mask + ")",
             type: this.props.account.type,
             detail: this.props.account.subtype,
-            credential_id: this.credential.id
+            credential_id: this.credential.id,
+            plaid_id: this.props.account.id
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -39,7 +40,8 @@ class AddAccount extends Component {
             title: this.state.title,
             type: this.state.type,
             detail: this.state.detail,
-            credential_id: this.state.credential_id
+            credential_id: this.state.credential_id,
+            plaid_id: this.state.plaid_id
         }
         let uri = MyGlobleSetting.url + '/api/accounts';
 

@@ -47,11 +47,11 @@ class AccountController extends Controller
         $account = new Account([
             'title' => $request->get('title'),
             'type' => $request->get('type'),
-            'credential_id' => $request->get('credential_id')
-            //@todo  if credential id exists, set the credential to used
+            'credential_id' => $request->get('credential_id'),
+            'plaid_id' => $request->get('plaid_id')
         ]);
-        $account->save();
 
+        $account->save();
 
         return response()->json('Account Added Successfully.');
     }

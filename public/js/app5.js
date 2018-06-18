@@ -13470,7 +13470,8 @@ var AddAccount = function (_Component) {
             title: _this.props.account.name + " (" + _this.props.account.mask + ")",
             type: _this.props.account.type,
             detail: _this.props.account.subtype,
-            credential_id: _this.credential.id
+            credential_id: _this.credential.id,
+            plaid_id: _this.props.account.id
         };
         _this.handleInputChange = _this.handleInputChange.bind(_this);
         _this.handleSubmit = _this.handleSubmit.bind(_this);
@@ -13499,7 +13500,8 @@ var AddAccount = function (_Component) {
                 title: this.state.title,
                 type: this.state.type,
                 detail: this.state.detail,
-                credential_id: this.state.credential_id
+                credential_id: this.state.credential_id,
+                plaid_id: this.state.plaid_id
             };
             var uri = __WEBPACK_IMPORTED_MODULE_3__components_MyGlobleSetting__["a" /* default */].url + '/api/accounts';
 

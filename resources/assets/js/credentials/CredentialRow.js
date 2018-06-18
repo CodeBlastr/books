@@ -22,12 +22,12 @@ class CredentialRow extends Component {
     render() {
         const credentialAccounts = [];
         const account = this.props.account;
-        const credential = this.props.data;
+        const credential = JSON.parse(this.props.data);
 
         this.data.public_data.metadata.accounts.forEach((account) => {
-            credentialAccounts.push(
-                <AddAccount credential={ credential } account={ account } key={ account.id } />
-            )
+            if (account._status !== 'used') {
+                credentialAccounts.push( <AddAccount credential={ credential } account={ account } key={ account.id } />)
+            }
         });
 
         return (

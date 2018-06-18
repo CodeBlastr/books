@@ -16,7 +16,7 @@ class CredentialController extends Controller
      */
     public function index()
     {
-        $credentials = Credential::decode(Credential::where('status', '=', 'unused')->get());
+        $credentials = Credential::decode(Credential::where('status', 'unused')->orWhere('status', 'partial')->get());
         return response()->json($credentials);
     }
 

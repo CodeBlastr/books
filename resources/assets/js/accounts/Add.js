@@ -9,12 +9,11 @@ import Alert from '../components/Alert';
 class AddAccount extends Component {
     constructor(props){
         super(props);
-        this.credential = JSON.parse(this.props.credential);
         this.state = {
             title: this.props.account.name + " (" + this.props.account.mask + ")",
             type: this.props.account.type,
             detail: this.props.account.subtype,
-            credential_id: this.credential.id,
+            credential_id: this.props.credential.id,
             plaid_id: this.props.account.id
         };
         this.handleInputChange = this.handleInputChange.bind(this);

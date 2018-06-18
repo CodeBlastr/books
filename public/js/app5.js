@@ -13465,12 +13465,11 @@ var AddAccount = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (AddAccount.__proto__ || Object.getPrototypeOf(AddAccount)).call(this, props));
 
-        _this.credential = JSON.parse(_this.props.credential);
         _this.state = {
             title: _this.props.account.name + " (" + _this.props.account.mask + ")",
             type: _this.props.account.type,
             detail: _this.props.account.subtype,
-            credential_id: _this.credential.id,
+            credential_id: _this.props.credential.id,
             plaid_id: _this.props.account.id
         };
         _this.handleInputChange = _this.handleInputChange.bind(_this);
@@ -59929,10 +59928,12 @@ var CredentialRow = function (_Component) {
         value: function render() {
             var credentialAccounts = [];
             var account = this.props.account;
-            var credential = this.props.data;
+            var credential = JSON.parse(this.props.data);
 
             this.data.public_data.metadata.accounts.forEach(function (account) {
-                credentialAccounts.push(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__accounts_Add__["a" /* default */], { credential: credential, account: account, key: account.id }));
+                if (account._status !== 'used') {
+                    credentialAccounts.push(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__accounts_Add__["a" /* default */], { credential: credential, account: account, key: account.id }));
+                }
             });
 
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(

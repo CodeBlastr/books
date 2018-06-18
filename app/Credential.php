@@ -78,7 +78,7 @@ class Credential extends Model
                 }
             }
 
-            if ($count > 0 && $count === $i) {
+            if ($count > 0 && $count === ($i - 1)) {
                 $credential->status = 'used';
             } else {
                 $credential->status = 'partial';

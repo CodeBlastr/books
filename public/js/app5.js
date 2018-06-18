@@ -13536,7 +13536,7 @@ var AddAccount = function (_Component) {
                                     null,
                                     'Account Nickname:'
                                 ),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { name: 'title', type: 'text', className: 'form-control', onChange: this.handleInputChange, value: this.props.account.name + " (" + this.props.account.mask + ")" })
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { name: 'title', type: 'text', className: 'form-control', onChange: this.handleInputChange, value: this.state.title })
                             )
                         )
                     ),
@@ -13554,8 +13554,8 @@ var AddAccount = function (_Component) {
                                     { name: 'type', className: 'form-control col-md-6', onChange: this.handleInputChange },
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                         'option',
-                                        { value: this.props.account.type },
-                                        this.props.account.type
+                                        { value: this.state.type },
+                                        this.state.type
                                     )
                                 )
                             )
@@ -13575,8 +13575,8 @@ var AddAccount = function (_Component) {
                                     { name: 'detail', className: 'form-control col-md-6', onChange: this.handleInputChange },
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                         'option',
-                                        { value: this.props.account.subtype },
-                                        this.props.account.subtype
+                                        { value: this.state.detail },
+                                        this.state.detail
                                     )
                                 )
                             )

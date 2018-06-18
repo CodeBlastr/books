@@ -43,7 +43,7 @@ class AddAccount extends Component {
             plaid_id: this.state.plaid_id
         }
         let uri = MyGlobleSetting.url + '/api/accounts';
-
+        
         axios.post(uri, account).then((response) => {
             browserHistory.push('/accounts');
             ReactDOM.render( <Alert autodismiss="2000" status="alert-success" message={ response.data } />, document.getElementById('loading'));
@@ -63,7 +63,7 @@ class AddAccount extends Component {
                         <div className="col-md-12">
                             <div className="form-group">
                                 <label>Account Nickname:</label>
-                                <input name="title" type="text" className="form-control" onChange={this.handleInputChange} value={this.props.account.name + " (" + this.props.account.mask + ")"} />
+                                <input name="title" type="text" className="form-control" onChange={this.handleInputChange} value={ this.state.title } />
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@ class AddAccount extends Component {
                         <div className="col-md-12">
                             <div className="form-group">
                                 <select name="type" className="form-control col-md-6" onChange={this.handleInputChange}>
-                                    <option value={ this.props.account.type }>{ this.props.account.type }</option>
+                                    <option value={ this.state.type }>{ this.state.type }</option>
                                 </select>
                             </div>
                         </div>
@@ -80,7 +80,7 @@ class AddAccount extends Component {
                         <div className="col-md-12">
                             <div className="form-group">
                                 <select name="detail" className="form-control col-md-6" onChange={this.handleInputChange}>
-                                    <option value={ this.props.account.subtype }>{ this.props.account.subtype }</option>
+                                    <option value={ this.state.detail }>{ this.state.detail }</option>
                                 </select>
                             </div>
                         </div>

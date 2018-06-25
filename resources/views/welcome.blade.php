@@ -46,7 +46,7 @@
 <body>
 <div id="loading"></div>
 <div id="crud-app"></div>
-<script src="{{asset('js/app5.js')}}"></script>
+<script src="{{asset('js/app6.js')}}"></script>
 
 <!-- for Plaid Link -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>

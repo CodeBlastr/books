@@ -8,6 +8,7 @@ import Master from './components/Master';
 import ListAccounts from './accounts/Index';
 import AddAccount from './accounts/Add';
 import EditAccount from './accounts/Edit';
+import ViewAccount from './accounts/View';
 import Example from './components/Example';
 
 
@@ -17,6 +18,7 @@ render(
         <Route path="/accounts" component={ListAccounts} />
         <Route path="/accounts/add" component={AddAccount} />
         <Route path="/accounts/edit/:id" component={EditAccount} />
+        <Route path="/accounts/:id" component={ViewAccount} />
         <Route path="/example" component={Example} />
         </Route>
     </Router>,

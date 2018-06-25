@@ -29,6 +29,7 @@ class TableRow extends Component {
                 </td>
                 <td>
                     <form onSubmit={this.handleSubmit}>
+                        <Link to={"accounts/"+this.data.id} className="btn btn-primary">View</Link>
                         <Link to={"accounts/edit/"+this.data.id} className="btn btn-primary">Edit</Link>
                         <input type="submit" value="Delete" className="btn btn-danger"/>
                     </form>

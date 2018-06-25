@@ -66,20 +66,17 @@ class AccountController extends Controller
     {
         $account = Account::find($id);
         if (!empty($account)) {
-            $credential = Credential::where('id', '=', $account->credential_id)->first();
-            dd(json_decode($credential->public_data));
-
-
-            $response = Plaid::request(['endpoint' => '/transactions/get']);
-            dd($response);
-            return response()->json($response);
-
+            //$credential = Credential::where('id', '=', $account->credential_id)->first();
+            //$response = Plaid::request(['endpoint' => '/transactions/get']);
             $transactions = Transaction::where('account_id', '=', $id)->get();
-            return view('accounts/show')->with(compact('account', 'transactions'));
+//            return view('accounts/show')->with(compact('account', 'transactions'));
+            return response()->json(compact('account', 'transactions'));
+
         } else {
-            Session::flash('status', 'No account found!');
-            Session::flash('status-class', 'alert-danger');
-            return view('accounts/show')->with('account', null);
+            return response()->json('error');
+//            Session::flash('status', 'No account found!');
+//            Session::flash('status-class', 'alert-danger');
+//            return view('accounts/show')->with('account', null);
         }
     }
 

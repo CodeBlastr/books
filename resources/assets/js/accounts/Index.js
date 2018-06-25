@@ -44,6 +44,8 @@ class ListAccounts extends Component {
 
             <div>
                 <h1>Accounts</h1>
+                <p>Next step is clicking on an account to view the transactions</p>
+                <p>Then on to downloading transactions.</p>
                 <div className="row">
                     <div className="col-md-10"></div>
                     <div className="col-md-2">
